@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserTypeViewDlg" widgetVar="UserTypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUserTypeTitle}">
+            <h:form id="UserTypeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userTypeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUserTypeLabel_userTypeId}"/>
+                        <h:outputText value="#{userTypeController.selected.userTypeId}" title="#{bundle.ViewUserTypeTitle_userTypeId}"/>
+                        <h:outputText value="#{bundle.ViewUserTypeLabel_userTypeName}"/>
+                        <h:outputText value="#{userTypeController.selected.userTypeName}" title="#{bundle.ViewUserTypeTitle_userTypeName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UserTypeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

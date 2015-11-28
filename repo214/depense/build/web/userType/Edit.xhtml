@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserTypeEditDlg" widgetVar="UserTypeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUserTypeTitle}">
+            <h:form id="UserTypeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userTypeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUserTypeLabel_userTypeId}" for="userTypeId" />
+                        <p:inputText id="userTypeId" value="#{userTypeController.selected.userTypeId}" title="#{bundle.EditUserTypeTitle_userTypeId}" required="true" requiredMessage="#{bundle.EditUserTypeRequiredMessage_userTypeId}"/>
+                        <p:outputLabel value="#{bundle.EditUserTypeLabel_userTypeName}" for="userTypeName" />
+                        <p:inputText id="userTypeName" value="#{userTypeController.selected.userTypeName}" title="#{bundle.EditUserTypeTitle_userTypeName}" required="true" requiredMessage="#{bundle.EditUserTypeRequiredMessage_userTypeName}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{userTypeController.update}" value="#{bundle.Save}" update="display,:UserTypeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UserTypeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UserTypeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
